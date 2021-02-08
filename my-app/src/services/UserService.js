@@ -1,7 +1,7 @@
 export async function getAllUsers() {
 
-    const response = await fetch('/api/users');
-    return await response.json();
+    const response = await fetch('/api/users')
+    return await response.json()
 }
 
 export async function createUser(data) {
@@ -10,5 +10,5 @@ export async function createUser(data) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({user: data})
       })
-    return await response.json();
+    return await response.json()
 }

@@ -16,8 +16,14 @@ const tableSchemaGenerated = (tableSchema) => {
 		 	columnSize.push(tableSchema[i]) 
 		 }
 		}
-		
 	}
+}
+
+const insertTableSchemaGenerated = (schema)=>{
+	if(schema && schema.tableName){
+		return `INSERT INTO ${schema.tableName} (${schema.columnName}) values (${schema.data})`
+	}
+	
 	
 }
 
@@ -43,6 +49,17 @@ exports.createTable = async function (con, tablelSchema) {
 			console.log("Table created")
 		})
 	})
-	
-	
+}
+exports.insertRecord = async function (con, tablelSchema) {
+	con.connect(function(err) {
+		if (err) throw err
+		console.log("Connected!")
+		const sqlString = insertTableSchemaGenerated(tablelSchema)
+		console.log("==== sqlString", sqlString)
+		const sql = `${sqlString}`
+		con.query(sql, function (err, result) {
+			if (err) throw err
+			console.log("1 record inserted")
+		})
+	})
 }
