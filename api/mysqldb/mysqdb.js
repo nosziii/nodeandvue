@@ -41,9 +41,9 @@ exports.createDb = async function (con, name) {
 exports.createTable = async function (con, tablelSchema) {
 	con.connect(function (err) {
 		if (err) throw err
-		const test = tableSchemaGenerated(tablelSchema)
+		const generatedSchema = tableSchemaGenerated(tablelSchema)
 		console.log("Connected!")
-		var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))"
+		const sql = generatedSchema
 		con.query(sql, function (err, result) {
 			if (err) throw err
 			console.log("Table created")
@@ -55,11 +55,20 @@ exports.insertRecord = async function (con, tablelSchema) {
 		if (err) throw err
 		console.log("Connected!")
 		const sqlString = insertTableSchemaGenerated(tablelSchema)
-		console.log("==== sqlString", sqlString)
 		const sql = `${sqlString}`
 		con.query(sql, function (err, result) {
 			if (err) throw err
 			console.log("1 record inserted")
+		})
+	})
+}
+
+exports.selectRecord = (con, selectStr)=> {
+	con.connect(function(err) {
+		if (err) throw err
+		con.query(selectStr, function (err, result, fields) {
+			if (err) throw err
+			console.log(result)
 		})
 	})
 }
