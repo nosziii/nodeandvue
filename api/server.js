@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, '../my-app/dist')))
 app.get('/api/users', (req, res) => {
   console.log('api/users called!!!!!!!')
   res.json(users)
+  console.log("dasdasda", user)
 })
 
 app.post('/api/user', (req, res) => {
