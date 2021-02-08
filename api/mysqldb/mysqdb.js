@@ -23,26 +23,26 @@ const tableSchemaGenerated = (tableSchema) => {
 
 exports.createDb = async function (con, name) {
 	con.connect(function (err) {
-		if (err) throw err;
+		if (err) throw err
 		console.log("Connected!")
 		con.query(`CREATE DATABASE ${name}`, function (err, result) {
-			if (err) throw err;
+			if (err) throw err
 			console.log("Database created")
-		});
+		})
 	})
 }
 
 exports.createTable = async function (con, tablelSchema) {
 	con.connect(function (err) {
-		if (err) throw err;
+		if (err) throw err
 		const test = tableSchemaGenerated(tablelSchema)
-		console.log("Connected!");
-		var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
+		console.log("Connected!")
+		var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))"
 		con.query(sql, function (err, result) {
-			if (err) throw err;
-			console.log("Table created");
-		});
-	});
+			if (err) throw err
+			console.log("Table created")
+		})
+	})
 	
 	
 }
