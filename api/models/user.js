@@ -1,8 +1,13 @@
 const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt')
+const config = require('dotenv').config()
 
 // create a sequelize instance with our local postgres database information.
-const sequelize = new Sequelize('postgres://postgres@localhost:5432/auth-system')
+
+const sequelize = new Sequelize(config.parsed.DB_DATABASE, config.parsed.DB_USER, config.parsed.DB_PASS, {
+	host: config.parsed.DB_HOST,
+	dialect:config.parsed.dialect
+})
 
 // setup User model and its fields.
 const User = sequelize.define('users', {

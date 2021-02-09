@@ -14,6 +14,9 @@
     <div class="row mrgnbtm">
         <Users v-if="users.length > 0" :users="users" />
     </div>
+    <div class="row mrgnbtm">
+      <login></login>
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ import Header from './Header.vue'
 import CreateUser from './CreateUser.vue'
 import DisplayBoard from './DisplayBoard.vue'
 import Users from './Users.vue'
+import Login from './login.vue'
 import { getAllUsers, createUser } from '../services/UserService'
 
 export default {
@@ -30,7 +34,8 @@ export default {
     Header,
     CreateUser,
     DisplayBoard,
-    Users
+    Users,
+    Login
   },
   data() {
       return {
